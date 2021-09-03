@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     @follows.each do |follow|
       friends_id << follow.followed_id
     end
-    # binding.pry
     user = {id: @user.id, name: @user.name, friends: friends_id}
     render json: user
   end

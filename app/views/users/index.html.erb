@@ -7,7 +7,7 @@
   <h2>ユーザーリスト</h2>
   <% User.all.where.not(id: current_user.id).each do |user| %>
     <p>
-      <%= "id: #{user.id} email: #{user.email}" %>
+      <%= "id: #{user.id} name: #{user.name}" %>
       <% if current_user.following?(user) %>
         <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
       <% else %>
