@@ -6,8 +6,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    user = {id: @user.id, name: @user.name}
-    # render json: @user
+    @follows = Relationship.where(follower_id: @user.id)
+    friends_id =[]
+    @follows.each do |follow|
+      friends_id << follow.followed_id
+    end
+    # binding.pry
+    user = {id: @user.id, name: @user.name, friends: friends_id}
+    render json: user
   end
 
 end
